@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme: NoActionBar + Fullscreen -->
+    <style name="Base.AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">#FF17202E</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Window background -->
+        <item name="android:windowBackground">@color/background</item>
+        <!-- Navigation bar black -->
+        <item name="android:navigationBarColor">@color/background</item>
+        <!-- Allow content in notch -->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <!-- ये दो सबसे ज़रूरी lines हैं -->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- आपकी पूरी app इसी पर inherit करेगी -->
+    <style name="AppTheme" parent="Base.AppTheme" />
+</resources>

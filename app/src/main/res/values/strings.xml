@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">test</string>
+    <string name="checking_data">Please wait!</string>
+    <string name="waiting_don_t_close_application">Downloading update....</string>
+
+</resources>

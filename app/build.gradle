@@ -1,0 +1,91 @@
+plugins {
+    id 'com.android.application'
+    id 'org.lsposed.lsparanoid'
+}
+
+apply from: '../signing.gradle'
+
+android {
+    
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    namespace 'com.zenin'
+    
+    lint {
+      baseline = file("lint-baseline.xml")
+    }
+    
+    defaultConfig {
+        applicationId rootProject.ext.LoaderPkg
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        vectorDrawables.useSupportLibrary = true
+        consumerProguardFiles "proguard-rules.pro"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+       ndk {
+            abiFilters 'arm64-v8a'
+        }
+    
+    }
+    
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable false
+            jniDebuggable false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            debuggable true
+            jniDebuggable true
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    ndkVersion rootProject.ext.ndkVersion
+    
+    externalNativeBuild {
+        ndkBuild {
+            path "src/main/jni/Android.mk"
+            
+        }
+    }
+    
+    buildFeatures {
+        viewBinding true
+    }
+    
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"]) // Excluded .aar to avoid ZCore conflict
+    implementation project(':HaxxCore')
+    
+    implementation 'com.github.nukc:StateView:2.1.1'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.github.tiann:FreeReflection:3.2.2'
+    
+    // Using local reflection modules instead of remote ones to ensure consistency with HaxxCore
+    implementation project(':black-reflection')
+    annotationProcessor project(':compiler')
+
+    implementation 'org.jdeferred:jdeferred-android-aar:1.2.6'
+    implementation 'io.github.molihuan:pathselector:1.1.16'
+    implementation 'net.lingala.zip4j:zip4j:2.11.5'
+    implementation 'com.airbnb.android:lottie:3.7.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.squareup.okio:okio:3.9.0'
+    implementation 'com.airbnb.android:lottie:6.1.0'
+}

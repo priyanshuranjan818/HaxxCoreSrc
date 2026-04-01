@@ -1,0 +1,11 @@
+include ':app'
+rootProject.name = "Zen BlackBox"
+
+include ':HaxxCore'
+project(':HaxxCore').projectDir = new File('HaxxCore-Source/Bcore')
+
+include ':black-reflection'
+project(':black-reflection').projectDir = new File('HaxxCore-Source/black-reflection')
+
+include ':compiler'
+project(':compiler').projectDir = new File('HaxxCore-Source/compiler')
