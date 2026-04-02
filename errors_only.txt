@@ -1,0 +1,48 @@
+﻿> Task :app:processDebugResources FAILED
++ FullyQualifiedError
+FAILURE: Build failed
+with an exception.
+Execution failed for task
+linking failed
+.xml:354: error:
+error: failed
+* Exception is:
+xecutionException:
+Execution failed for task
+(CatchExceptionTaskExecute
+(CatchExceptionTaskExecute
+2Exception: Android
+resource linking failed
+354: error: attribute andr
+error: failed processing
+ternal.aapt.v2.Aapt2Except
+ion$Companion.create(Aapt2
+Exception.kt:45)
+ternal.aapt.v2.Aapt2Except
+lt(Aapt2Exception.kt:33)
+ternal.aapt.v2.Aapt2Daemon
+Impl.doLink(Aapt2DaemonImp
+ternal.aapt.v2.Aapt2Daemon
+.link(Aapt2Daemon.kt:124)
+ternal.aapt.v2.Aapt2Daemon
+ink(Aapt2DaemonManager.kt:
+ternal.aapt.v2.Aapt2Daemon
+Manager$leasingAapt2Daemon
+$1.link(Aapt2DaemonManager
+le.internal.res.Aapt2Proce
+essResources(Aapt2ProcessR
+egalArgumentException:
+dle.internal.res.Aapt2Erro
+n$2.invoke(Aapt2ErrorUtils
+dle.internal.res.Aapt2Erro
+n$2.invoke(Aapt2ErrorUtils
+dle.internal.res.Aapt2Erro
+pt2ErrorUtils.kt:278)
+dle.internal.res.Aapt2Erro
+rUtils.rewriteException(Aa
+pt2ErrorUtils.kt:235)
+dle.internal.res.Aapt2Erro
+n(Aapt2ErrorUtils.kt:133)
+dle.internal.res.Aapt2Proc
+cessResources(Aapt2Process
+BUILD FAILED in 1s

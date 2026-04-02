@@ -39,5 +39,5 @@ ext {
 
     LoaderPkg = 'com.zenin' // Custom namespace/package used
     blackReflection = '1.1.4'
-    ndkVersion = "24.0.8215888"
+    ndkVersion = "27.2.12479018"  // NDK r27 — supports Android 15/16
 }

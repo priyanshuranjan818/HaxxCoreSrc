@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.util.Log;
 import com.zenin.utils.FPrefs;
+import com.zenin.utils.FeatureFlags;
 import java.io.File;
 
 import com.haxxcore.engine.HaxxCore;
@@ -73,18 +74,22 @@ public class BoxApplication extends Application {
             @Override
             public void beforeCreateApplication(String packageName, String processName, Context context, int userId) {
                 // Fix 1: Inject libbgmi.so into the virtual BGMI process
-                try {
-                    File loaderLib = new File(getFilesDir(), "loader/libbgmi.so");
-                    if (loaderLib.exists()) {
-                        System.load(loaderLib.getAbsolutePath());
-                        Log.d(TAG, "libbgmi.so injected successfully into " + packageName);
-                    } else {
-                        Log.w(TAG, "libbgmi.so not found at: " + loaderLib.getAbsolutePath());
+                if (FeatureFlags.ENABLE_LIB_INJECTION) {
+                    try {
+                        File loaderLib = new File(getFilesDir(), "loader/libbgmi.so");
+                        if (loaderLib.exists()) {
+                            System.load(loaderLib.getAbsolutePath());
+                            Log.d(TAG, "libbgmi.so injected successfully into " + packageName);
+                        } else {
+                            Log.w(TAG, "libbgmi.so not found at: " + loaderLib.getAbsolutePath());
+                        }
+                    } catch (UnsatisfiedLinkError e) {
+                        Log.e(TAG, "Failed to load libbgmi.so: " + e.getMessage());
+                    } catch (Exception e) {
+                        Log.e(TAG, "Error injecting lib: " + e.getMessage());
                     }
-                } catch (UnsatisfiedLinkError e) {
-                    Log.e(TAG, "Failed to load libbgmi.so: " + e.getMessage());
-                } catch (Exception e) {
-                    Log.e(TAG, "Error injecting lib: " + e.getMessage());
+                } else {
+                    Log.d(TAG, "Lib injection disabled for testing");
                 }
 
                 // Fix 2: Pre-create virtual data directories so BGMI doesn't re-download

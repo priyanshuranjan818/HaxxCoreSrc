@@ -1,7 +1,6 @@
-APP_ABI := armeabi-v7a
-APP_PLATFORM := android-24
-APP_STL := c++_static
-APP_OPTIM := release
+APP_ABI         := arm64-v8a
+APP_PLATFORM    := android-26
+APP_STL         := c++_static
+APP_OPTIM       := release
 APP_THIN_ARCHIVE := true
-APP_PIE 		:= true
-
+APP_PIE         := true

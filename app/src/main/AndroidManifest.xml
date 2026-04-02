@@ -58,6 +58,15 @@
                     android:host="auth"
                     android:path="/callback" />
             </intent-filter>
+            <!-- Facebook native redirect: fb{APP_ID}://authorize -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="fb1847354332646976"
+                    android:host="authorize" />
+            </intent-filter>
         </activity>
 
 

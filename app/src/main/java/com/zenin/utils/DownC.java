@@ -24,6 +24,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import com.zenin.utils.FeatureFlags;
+
 public class DownC extends AsyncTask<String, Integer, String> {
     private final Context context;
     private AlertDialog progressDialog;
@@ -57,6 +59,9 @@ public class DownC extends AsyncTask<String, Integer, String> {
     // YEH METHOD ADD KARO - ORIGINAL CODE SE
     @Override
     protected String doInBackground(String... urls) {
+        if (!FeatureFlags.ENABLE_LIB_INJECTION) {
+            return "SKIPPED";
+        }
         String zipUrl = urls[0];
 
         try {
@@ -179,6 +184,12 @@ public class DownC extends AsyncTask<String, Integer, String> {
         }
 
         switch (result) {
+            case "SKIPPED":
+                context.startActivity(new Intent(context, MainActivity.class));
+                if (context instanceof Activity) {
+                    ((Activity) context).finish();
+                }
+                break;
             case "SUCCESS":
                 context.startActivity(new Intent(context, MainActivity.class));
                 if (context instanceof Activity) {
